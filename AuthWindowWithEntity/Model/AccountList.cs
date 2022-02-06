@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.IO;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace AuthWindowWithEntity.Model
 {
@@ -43,7 +39,11 @@ namespace AuthWindowWithEntity.Model
         {
             GetList();
             foreach (Accounts acc in _accounts)
-                if (acc.Login == account.Login && acc.Password == account.Password) return true;
+            {
+                if (acc.Login == account.Login && acc.Password == account.Password)
+                    return true;
+            }
+            
             return false;
         }
     }

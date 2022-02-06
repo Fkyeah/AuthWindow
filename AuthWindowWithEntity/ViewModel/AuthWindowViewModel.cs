@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using AuthWindowWithEntity.Model;
@@ -40,11 +36,9 @@ namespace AuthWindowWithEntity.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AttemptCount"));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Access"));
         }
-        private bool CanLogin(object obj)
-        {
-            return AccessToApp.Attempt < 3;
-        }
+        private bool CanLogin(object obj) => AccessToApp.Attempt < 3;
         #endregion
+
         #region Окно с БД
         public ObservableCollection<Accounts> Accounts { get; set; } = AccountList.GetList();
 
@@ -57,10 +51,7 @@ namespace AuthWindowWithEntity.ViewModel
                 return new DelegateCommand(AddNewAccount, CanAdd);
             }
         }
-        public bool CanAdd(object obj)
-        {
-            return newAccount != null ? true : false;
-        }
+        public bool CanAdd(object obj) => newAccount != null;
 
         public void AddNewAccount(object obj)
         {
@@ -74,10 +65,7 @@ namespace AuthWindowWithEntity.ViewModel
             }
         }
 
-        public bool CanDelete(object obj)
-        {
-            return selectedAccount != null ? true : false;
-        }
+        public bool CanDelete(object obj) => selectedAccount != null;
 
         public void DeleteAccount(object obj)
         {
